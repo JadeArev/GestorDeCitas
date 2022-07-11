@@ -1,14 +1,26 @@
 import './App.css';
-import Titulos from './components/Titulos';
+import React, {useState} from 'react';
+import Formulario from './components/Formulario';
+import ListadoCitas from './ListadoCitas';
 
 function App() {
+
+  const [ListaDeCitas, setListaDeCitas] = useState([]);
   return (
+  
+       <div id ="root">
+        <div className="container">
+
+        <div className="row">
+
+        <Formulario setListaDeCitas = {setListaDeCitas}></Formulario>
+        <ListadoCitas ListaDeCitas = {ListaDeCitas} setListaDeCitas = {setListaDeCitas}></ListadoCitas>
+        
+        </div>
+        </div>
+       </div>
+
     
-      <div>
-
-          <Titulos/>
-
-      </div>
 
 
     

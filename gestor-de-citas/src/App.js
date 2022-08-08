@@ -1,30 +1,24 @@
+import { useState, createContext } from 'react';
 import './App.css';
-import React, {useState} from 'react';
-import Formulario from './components/Formulario';
-import ListadoCitas from './ListadoCitas';
+import CreateDate from './components/CreateDate.js';
+import DateList from './components/DateList.js';
 
-function App() {
+export const DatesContext = createContext();
 
-  const [ListaDeCitas, setListaDeCitas] = useState([]);
+export default function App() {
+  const [dates, setDates] = useState([]);
+  function deleteDate(id){
+    setDates(_dates => _dates.filter(date => date.id !== id));
+  }
   return (
-  
-       <div id ="root">
+    <>
+      <DatesContext.Provider value={dates}>
+        <h1>ADMINISTRADOR DE PACIENTES</h1>
         <div className="container">
-
-        <div className="row">
-
-        <Formulario setListaDeCitas = {setListaDeCitas}></Formulario>
-        <ListadoCitas ListaDeCitas = {ListaDeCitas} setListaDeCitas = {setListaDeCitas}></ListadoCitas>
-        
+          <CreateDate createHandler={setDates}/>
+          <DateList deleteHandler={deleteDate}/>
         </div>
-        </div>
-       </div>
-
-    
-
-
-    
+      </DatesContext.Provider>
+    </>
   );
 }
-
-export default App;
